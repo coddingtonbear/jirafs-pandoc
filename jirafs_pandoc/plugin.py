@@ -61,6 +61,25 @@ class Pandoc(Plugin):
 
         return enabled
 
+    def get_username_and_email(self):
+        try:
+            name = subprocess.check_output([
+                'git',
+                'config',
+                'user.name',
+            ]).decode('utf8').strip()
+            email = subprocess.check_output([
+                'git',
+                'config',
+                'user.email',
+            ]).decode('utf8').strip()
+            return '%s <%s>' % (
+                name,
+                email,
+            )
+        except (subprocess.CalledProcessError, OSError, IOError):
+            return ''
+
     def get_command_args(self, original_filename, file_path):
         command = [
             'pandoc',
@@ -80,6 +99,7 @@ class Pandoc(Plugin):
             command.extend([
                 '--template=%s' % template_path,
                 '--variable', 'version=%s' % version,
+                '--variable', 'author=%s' % self.get_username_and_email(),
                 '--latex-engine=xelatex',
             ])
 

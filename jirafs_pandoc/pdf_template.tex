@@ -35,9 +35,10 @@ $endif$
 \usepackage{fancyhdr}
 \fancypagestyle{plain}{
   \fancyhf{}% Clear header/footer
-  \fancyhead[R]{\itshape $title$}% Right header
-  \fancyfoot[L]{\itshape $version$}% Left footer
-  \fancyfoot[R]{\itshape \thepage}% Right footer
+  \fancyhead[L]{\itshape $title$}
+  \fancyhead[R]{\itshape $author$}
+  \fancyfoot[L]{\itshape \thepage}
+  \fancyfoot[R]{\small{\itshape $version$}}
 }
 \pagestyle{plain}
 \pagenumbering{arabic}
@@ -128,7 +129,7 @@ $endfor$
 $if(title)$
 \title{$title$}
 $endif$
-\author{$for(author)$$author$$sep$ \and $endfor$}
+\author{}
 \date{$date$}
 
 \begin{document}
