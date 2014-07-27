@@ -15,11 +15,11 @@ Installation
 
 1. Install from PIP::
 
-   pip install jirafs-pandoc
+    pip install jirafs-pandoc
 
 2. Enable for a ticket folder::
 
-   jirafs config --set plugins.pandoc on
+    jirafs config --set plugins.pandoc on
 
 Note that you can globally enable this (or any) plugin by adding the
 ``--global`` flag to the above command::
@@ -75,7 +75,7 @@ Optional Configuration
 ----------------------
 
 By default, all supported files will be converted into PDF files, but
-you can also convert to HTML documents by setting the
+you can convert to HTML instead by setting the
 ``pandoc.output_format`` setting::
 
     jirafs config --set pandoc.output_format html
