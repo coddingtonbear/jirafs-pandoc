@@ -33,6 +33,7 @@ class Pandoc(Plugin):
         "rst": ["rst"],
         "textile": ["textile"]
     }
+    DEFAULT_FORMATS = ['latex', 'markdown', 'rst', 'textile']
 
     def get_format_from_path(self, path):
         extension = os.path.splitext(path)[1][1:]
@@ -56,6 +57,11 @@ class Pandoc(Plugin):
         formats = config.get('enabled_input_formats', None)
         extensions = config.get('enabled_input_extensions', None)
 
+        if not formats:
+            formats = self.DEFAULT_FORMATS
+        else:
+            formats = formats.split(',')
+
         enabled = []
         if not formats and not extensions:
             for supported in self.SUPPORTED_INPUT_FORMATS.values():
@@ -63,11 +69,11 @@ class Pandoc(Plugin):
                     enabled.append(v)
         else:
             if formats:
-                for format_name in formats.split(','):
+                for format_name in formats:
                     for v in self.SUPPORTED_INPUT_FORMATS[format_name]:
                         enabled.append(v)
             if extensions:
-                enabled.extend(extensions)
+                enabled.extend(extensions.split(','))
 
         return enabled
 

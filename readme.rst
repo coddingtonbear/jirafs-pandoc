@@ -91,9 +91,9 @@ which formats your version of Pandoc supports by running::
 Optional Configuration
 ----------------------
 
-By default, all supported files will be converted into PDF files, but
-you can convert to HTML (or any other supported format) instead by setting
-the ``pandoc.output_format`` setting::
+By default, markdown, reStructuredText, latex, and textile files will be
+converted into PDF files, but you can convert to HTML (or any other
+supported format) instead by setting the ``pandoc.output_format`` setting::
 
     jirafs config --set pandoc.output_format html
 
