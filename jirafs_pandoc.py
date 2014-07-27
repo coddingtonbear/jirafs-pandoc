@@ -25,17 +25,20 @@ class Pandoc(Plugin):
     }
 
     def get_format_from_path(self, path):
-        extension = os.path.splitext(path)[1:]
-        for format_name, extension_list in self.SUPPORTED_INPUT_FORMATS:
-            if extension in extension_list:
+        extension = os.path.splitext(path)[1][1:]
+        for format_name, extensions in self.SUPPORTED_INPUT_FORMATS.items():
+            if extension in extensions:
                 return format_name
         raise PluginOperationError(
             "Unable to find format matching extension %s" % extension
         )
 
-    def get_output_format(self):
+    def get_output_format(self, actual=False):
         config = self.get_configuration()
-        return config.get('output_format', 'pdf').lower()
+        value = config.get('output_format', 'pdf').lower()
+        if actual and value == 'pdf':
+            return 'latex'
+        return value
 
     def get_enabled_input_extensions(self):
         config = self.get_configuration()
@@ -45,7 +48,7 @@ class Pandoc(Plugin):
 
         enabled = []
         if not formats and not extensions:
-            for supported in self.SUPPORTED_INPUT_VALUES.values():
+            for supported in self.SUPPORTED_INPUT_FORMATS.values():
                 for v in supported:
                     enabled.append(v)
         else:
@@ -58,11 +61,11 @@ class Pandoc(Plugin):
 
         return enabled
 
-    def get_command_args(self, file_path):
+    def get_command_args(self, original_filename, file_path):
         command = [
             'pandoc',
-            '--from=%s' % self.get_format_from_path(file_path),
-            '--to=%s' % self.get_output_format(),
+            '--from=%s' % self.get_format_from_path(original_filename),
+            '--to=%s' % self.get_output_format(actual=True),
             '-o',
             file_path
         ]
@@ -99,7 +102,7 @@ class Pandoc(Plugin):
         )
 
         proc = subprocess.Popen(
-            self.get_command_args(temp_file_path),
+            self.get_command_args(filename, temp_file_path),
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
@@ -111,7 +114,7 @@ class Pandoc(Plugin):
                 "%s encountered an error while compiling from %s to %s: %s" % (
                     self.plugin_name,
                     extension,
-                    self.OUTPUT_EXTENSION,
+                    self.get_output_format(),
                     stderr,
                 )
             )
