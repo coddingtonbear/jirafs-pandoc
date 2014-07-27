@@ -23,7 +23,6 @@ class Pandoc(Plugin):
         "rst": ["rst"],
         "textile": ["textile"]
     }
-    SUPPORTED_OUTPUT_FORMATS = ['html', 'pdf']
 
     def get_format_from_path(self, path):
         extension = os.path.splitext(path)[1:]

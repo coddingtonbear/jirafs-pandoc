@@ -1,14 +1,8 @@
 Jirafs-Pandoc
 =============
 
-Automatically converts supported markup into either HTML or a PDF
-when uploading to JIRA.
-
-Requirements
-------------
-
-* HTML Output: Pandoc.
-* PDF Output: Pandoc and xelatex.
+Automatically converts supported markup into fancy PDF files
+(or any other Pandoc-supported format) when uploading to JIRA.
 
 Installation
 ------------
@@ -26,30 +20,39 @@ Note that you can globally enable this (or any) plugin by adding the
 
     jirafs config --global --set plugins.pandoc on
 
-Supported Formats and Extensions
---------------------------------
+Requirements
+------------
 
-* ``extra``
+Depending upon which output format you utilize, your requirements
+may vary:
+
+* **PDF Output**: Both pandoc and xelatex are required.
+* **Other output formats**: Only pandoc is required.
+
+Supported Input Formats and Extensions
+--------------------------------------
+
+* Text Formats (``extra``)
 
   * ``*.text``
   * ``*.txt``
 
-* ``html``
+* HTML (``html``)
 
   * ``*.html``
   * ``*.htm``
 
-* ``json``
+* JSON (pandoc AST) (``json``)
 
   * ``*.json``
 
-* ``latex``
+* Latex (``latex``)
 
   * ``*.latex``
   * ``*.tex``
   * ``*.ltx``
 
-* ``markdown``
+* Markdown (``markdown``)
 
   * ``*.markdown``
   * ``*.mkd``
@@ -59,24 +62,38 @@ Supported Formats and Extensions
   * ``*.pd``
   * ``*.pdc``
 
-* ``native``
+* Native Pandoc (``native``)
 
   * ``*.hs``
 
-* ``rst``
+* reStructuredText (``rst``)
 
   * ``*.rst``
 
-* ``textile``
+* Textile (``textile``)
 
   * ``*.textile``
+
+Supported Output Formats
+------------------------
+
+Common output formats include:
+
+* PDF (``pdf``)
+* HTML (``html``)
+* RTF (``rtf``)
+
+But, you can use any output format supported by Pandoc.  Please check
+which formats your version of Pandoc supports by running::
+
+    pandoc --help
 
 Optional Configuration
 ----------------------
 
 By default, all supported files will be converted into PDF files, but
-you can convert to HTML instead by setting the
-``pandoc.output_format`` setting::
+you can convert to HTML (or any other supported format) instead by setting
+the ``pandoc.output_format`` setting::
 
     jirafs config --set pandoc.output_format html
 
