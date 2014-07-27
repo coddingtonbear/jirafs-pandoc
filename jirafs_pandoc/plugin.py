@@ -10,6 +10,16 @@ from jirafs.plugin import Plugin, PluginOperationError, PluginValidationError
 
 
 class Pandoc(Plugin):
+    """ Converts various markups into other document formats for JIRA.
+
+    By default, jirafs_pandoc will convert all known markdown, latex,
+    reStructuredText, and textile documents into fancy PDFs during the
+    upload process.
+
+    See documentation at http://github.com/coddingtonbear/jirafs-pandoc
+    for more details.
+
+    """
     MIN_VERSION = '0.9.0'
     MAX_VERSION = '0.99.99'
 
