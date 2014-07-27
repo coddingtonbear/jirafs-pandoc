@@ -1,6 +1,8 @@
 import os
 from setuptools import setup, find_packages
 
+from jirafs_pandoc import __version__ as version_string
+
 
 requirements_path = os.path.join(
     os.path.dirname(__file__),
@@ -23,7 +25,7 @@ except ImportError:
 
 setup(
     name='jirafs-pandoc',
-    version='0.9',
+    version=version_string,
     url='https://github.com/coddingtonbear/jirafs-pandoc',
     description=(
         'Automatically convert markup supported by pandoc into PDF/HTML '
@@ -40,7 +42,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'jirafs_plugins': [
-            'pandoc = jirafs_pandoc:Pandoc',
+            'pandoc = jirafs_pandoc.plugin:Pandoc',
         ]
     },
 )
