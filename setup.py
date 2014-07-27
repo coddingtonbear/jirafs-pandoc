@@ -39,6 +39,7 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     install_requires=requirements,
+    include_package_data=True,
     packages=find_packages(),
     entry_points={
         'jirafs_plugins': [
