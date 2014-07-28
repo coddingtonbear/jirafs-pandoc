@@ -91,14 +91,20 @@ which formats your version of Pandoc supports by running::
 Optional Configuration
 ----------------------
 
-By default, markdown, reStructuredText, latex, and textile files will be
-converted into PDF files, but you can convert to HTML (or any other
-supported format) instead by setting the ``pandoc.output_format`` setting::
+* Default Input Formats: markdown, reStructuredText, latex, and textile.
+  See `Configuring Input Formats`_ for details on how to limit or
+  expand which files will be transformed.
+* Default Output Format: PDF.  See `Configuring Output Format`_ for
+  details on how to set which output format will be used.
 
-    jirafs config --set pandoc.output_format html
+Configuring Input Formats
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Additionally, you can limit which files will be transformed on a format
-or extension basis.
+By default, only markdown, reStructuredText, latex, and textile files
+are transformed, but you can change which files will be transformed on a
+format or extension basis using either the
+``pandoc.enabled_input_extensions`` or the ``pandoc.enabled_input_formats``
+settings.
 
 To limit to only specific extensions, set the
 ``pandoc.enabled_input_extensions`` setting; for example, to only transform
@@ -111,3 +117,13 @@ To limit to only specific formats, set the
 markdown and latex documents, you could run::
 
     jirafs config --set pandoc.enabled_input_formats markdown,latex
+
+Configuring Output Format
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, markup files will be converted into PDF files, but you can
+convert to HTML (or any other supported format) instead by setting the
+``pandoc.output_format`` setting::
+
+    jirafs config --set pandoc.output_format html
+
