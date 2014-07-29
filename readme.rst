@@ -1,8 +1,12 @@
 Jirafs-Pandoc
 =============
 
-Automatically converts supported markup into fancy PDF files
-(or any other Pandoc-supported format) when uploading to JIRA.
+Automatically converts many kinds of markup into fancy PDF files
+when uploading to JIRA.
+
+For example: it transforms
+`markup like this <https://s3-us-west-2.amazonaws.com/coddingtonbear-public/pdf_example.rst>`_
+into `markup like this <https://s3-us-west-2.amazonaws.com/coddingtonbear-public/pdf_example.pdf>`_.
 
 Installation
 ------------
