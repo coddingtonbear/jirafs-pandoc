@@ -21,7 +21,7 @@ class Pandoc(Plugin):
 
     """
     MIN_VERSION = '0.9.0'
-    MAX_VERSION = '0.99.99'
+    MAX_VERSION = '1.99.99'
 
     SUPPORTED_INPUT_FORMATS = {
         "extra": ["text", "txt"],
