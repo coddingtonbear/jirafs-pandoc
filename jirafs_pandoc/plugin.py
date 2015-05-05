@@ -12,7 +12,7 @@ from jirafs.plugin import Plugin, PluginOperationError, PluginValidationError
 class Pandoc(Plugin):
     """ Converts various markups into other document formats for JIRA.
 
-    By default, jirafs_pandoc will convert all known markdown, latex,
+    By default, jirafs_pandoc will convert all known markdown,
     reStructuredText, and textile documents into fancy PDFs during the
     upload process.
 
@@ -33,7 +33,7 @@ class Pandoc(Plugin):
         "rst": ["rst"],
         "textile": ["textile"]
     }
-    DEFAULT_FORMATS = ['latex', 'markdown', 'rst', 'textile']
+    DEFAULT_FORMATS = ['markdown', 'rst', 'textile']
 
     def get_format_from_path(self, path):
         extension = os.path.splitext(path)[1][1:]

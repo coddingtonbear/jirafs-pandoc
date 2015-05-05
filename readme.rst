@@ -95,7 +95,7 @@ which formats your version of Pandoc supports by running::
 Optional Configuration
 ----------------------
 
-* Default Input Formats: markdown, reStructuredText, latex, and textile.
+* Default Input Formats: markdown, reStructuredText, and textile.
   See `Configuring Input Formats`_ for details on how to limit or
   expand which files will be transformed.
 * Default Output Format: PDF.  See `Configuring Output Format`_ for
@@ -104,7 +104,7 @@ Optional Configuration
 Configuring Input Formats
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default, only markdown, reStructuredText, latex, and textile files
+By default, only markdown, reStructuredText, and textile files
 are transformed, but you can change which files will be transformed on a
 format or extension basis using either the
 ``pandoc.enabled_input_extensions`` or the ``pandoc.enabled_input_formats``
@@ -118,9 +118,9 @@ reStructuredText and textile documents into PDFs, you would run::
 
 To limit to only specific formats, set the
 ``pandoc.enabled_input_formats`` setting.  To limit to transforming only
-markdown and latex documents, you could run::
+markdown and textile documents, you could run::
 
-    jirafs config --set pandoc.enabled_input_formats markdown,latex
+    jirafs config --set pandoc.enabled_input_formats markdown,textile
 
 Configuring Output Format
 ~~~~~~~~~~~~~~~~~~~~~~~~~
